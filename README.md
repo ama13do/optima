@@ -89,4 +89,3 @@ Accede a **http://localhost:5173**
 
 ---
 
-Desarrollado con ❤️ por [Tu Nombre/Equipo] para el Hackathon 2025.
