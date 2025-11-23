@@ -6,11 +6,21 @@
 ![Python](https://img.shields.io/badge/Backend-FastAPI-green)
 ![React](https://img.shields.io/badge/Frontend-Vite_React-blue)
 
+## 🌐 Live Demo
+
+* **Production:** __http://tortadetamal.fit/__
+* **Vultr:** __http://45.77.163.127__
+* **API:** __http://45.77.163.127:8000/docs__
+
+---
+
 ## 📖 Descripción
 
 **Optima** es una plataforma de ingeniería de datos autónoma diseñada para auditar, limpiar y estructurar datasets no estructurados (imágenes, PDFs, audio) en segundos.
 
 Utiliza **Gemini 1.5 Pro** para detectar sesgos éticos (género, raza, edad) y calidad técnica, **Vultr Cloud** para el procesamiento escalable, y **ElevenLabs** para ofrecer una interfaz de voz humana que explica los hallazgos al usuario.
+
+---
 
 ## 🏗️ Arquitectura del Sistema
 
@@ -23,7 +33,24 @@ graph LR
     API -- Vision/Text --> Gemini[Google Gemini 1.5]
     API -- TTS Request --> Eleven[ElevenLabs API]
     Eleven -- Audio Stream --> User
-🚀 Stack TecnológicoInfraestructura: Vultr Cloud Compute (VPS) & Vultr Object Storage (S3).IA Core: Google Gemini 1.5 Flash (Visión/STT) & Pro (Razonamiento).Voz: ElevenLabs (Text-to-Speech Streaming).Backend: Python FastAPI, Uvicorn.Frontend: React, Tailwind CSS, Recharts, Lucide React.📂 Estructura del RepositorioBash/optima
+```
+
+---
+
+## 🚀 Stack Tecnológico
+
+* **Infraestructura:** Vultr Cloud Compute (VPS) & Vultr Object Storage (S3).
+* **IA Core:** Google Gemini 1.5 Flash (Visión/STT) & Pro (Razonamiento).
+* **Voz:** ElevenLabs (Text-to-Speech Streaming).
+* **Backend:** Python FastAPI, Uvicorn.
+* **Frontend:** React, Tailwind CSS, Recharts, Lucide React.
+
+---
+
+## 📂 Estructura del Repositorio
+
+```bash
+/optima
 ├── /backend          # API Python (FastAPI + Lógica IA)
 │   ├── main.py       # Endpoints principales
 │   ├── gemini_service.py # Integración Multimodal
@@ -32,107 +59,34 @@ graph LR
 │   ├── src/          # Componentes y Lógica
 │   └── public/       # Assets estáticos
 └── README.md         # Documentación General
-🏁 Quick Start (Modo Desarrollo)Para correr todo el proyecto localmente:Backend:Bashcd backend
+```
+
+---
+
+## 🏁 Quick Start (Modo Desarrollo)
+
+Para correr todo el proyecto localmente:
+
+### Backend:
+
+```bash
+cd backend
 python -m venv venv
 source venv/bin/activate  # o .\venv\Scripts\activate en Windows
 pip install -r requirements.txt
 uvicorn main:app --reload
-Frontend:Bashcd frontend
+```
+
+### Frontend:
+
+```bash
+cd frontend
 npm install
 npm run dev
-Accede a http://localhost:5173Desarrollado con ❤️ por [Tu Nombre/Equipo] para el Hackathon 2025.
+```
+
+Accede a **http://localhost:5173**
+
 ---
 
-### 2. 📁 Archivo: `backend/README.md`
-*Este va dentro de la carpeta `backend/`.*
-
-```markdown
-# 🧠 Optima Backend (API)
-
-El cerebro de la plataforma Optima. Esta API RESTful maneja la orquestación entre el almacenamiento en Vultr, el análisis cognitivo de Gemini y la síntesis de voz de ElevenLabs.
-
-## ✨ Características
-
-* **Análisis Multimodal:** Procesa imágenes, PDFs y Audio.
-* **Streaming de Datos:** Sube archivos a Vultr Object Storage sin tocar el disco local (memoria eficiente).
-* **Streaming de Audio:** Genera voz en tiempo real (chunked transfer) para baja latencia.
-* **Detección de Sesgos:** Algoritmos de Fairness AI mediante prompts expertos.
-* **Speech-to-Text (STT):** Transcripción de audio nativa con Gemini.
-
-## 🛠️ Instalación
-
-1.  **Crear entorno virtual:**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate
-    ```
-
-2.  **Instalar dependencias:**
-    ```bash
-    pip install fastapi uvicorn boto3 python-multipart google-generativeai python-dotenv requests
-    ```
-
-3.  **Configurar Variables de Entorno:**
-    Crea un archivo `.env` en la raíz de `backend/` con el siguiente contenido:
-
-    ```env
-    # --- VULTR CONFIG ---
-    VULTR_ACCESS_KEY=tu_access_key
-    VULTR_SECRET_KEY=tu_secret_key
-    VULTR_ENDPOINT=[https://ewr1.vultrobjects.com](https://ewr1.vultrobjects.com)
-    BUCKET_NAME=nombre-de-tu-bucket
-
-    # --- AI SERVICES ---
-    GOOGLE_API_KEY=tu_gemini_key
-    ELEVENLABS_API_KEY=tu_elevenlabs_key
-    ```
-
-## 🚀 Ejecución
-
-**Modo Desarrollo (Local):**
-```bash
-uvicorn main:app --reload
-Swagger UI: http://127.0.0.1:8000/docsAPI Root: http://127.0.0.1:8000Modo Producción (Servidor):Bashuvicorn main:app --host 0.0.0.0 --port 8000
-📡 Endpoints PrincipalesMétodoEndpointDescripciónPOST/analyze-batchSube archivos a Vultr y analiza calidad/sesgos con Gemini.POST/speakConvierte texto a stream de audio (TTS).POST/transcribeConvierte archivo de audio a texto (STT).POST/analyze-jsonAnálisis estadístico de datos estructurados.
----
-
-### 3. 📁 Archivo: `frontend/README.md`
-*Este va dentro de la carpeta `frontend/`.*
-
-```markdown
-# 💻 Optima Frontend (UI)
-
-Interfaz de usuario moderna y reactiva construida para facilitar la auditoría de datos. Diseñada con un enfoque "Dark Mode" profesional para ingenieros de datos.
-
-## ✨ Características
-
-* **Upload Drag & Drop:** Soporte para múltiples archivos simultáneos.
-* **Visualización de Datos:** Gráficas en tiempo real con `Recharts`.
-* **Voice Interaction:**
-    * **Input:** Dictado por voz usando la Web Speech API nativa.
-    * **Output:** Reproducción de audio streaming desde el backend.
-* **Diseño Responsivo:** Construido con Tailwind CSS.
-
-## 🛠️ Instalación
-
-Asegúrate de tener Node.js instalado (v18+ recomendado).
-
-1.  **Instalar dependencias:**
-    ```bash
-    npm install
-    ```
-
-2.  **Configuración de Conexión:**
-    Verifica en `src/App.jsx` la URL del backend.
-    * *Local:* `http://127.0.0.1:8000`
-    * *Producción (Vultr):* `http://45.77.163.127:8000`
-
-## 🚀 Ejecución
-
-**Modo Desarrollo:**
-```bash
-npm run dev
-Accede a http://localhost:5173Construir para Producción:Genera los archivos estáticos optimizados en la carpeta dist/.Bashnpm run build
-📦 Deploy (Despliegue)Para subir los cambios al servidor Vultr (Nginx):Bash# Desde la carpeta frontend
-npm run build
-scp -r dist root@TU_IP_VULTR:/var/www/html
+Desarrollado con ❤️ por [Tu Nombre/Equipo] para el Hackathon 2025.
