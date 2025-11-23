@@ -96,7 +96,7 @@ Hemos construido Optima sobre hombros de gigantes:
 
 ## 🚀 Inicio Rápido
 
-### Prerequisitos
+### Prerrequisitos
 
 - Python 3.8+
 - Node.js 18+

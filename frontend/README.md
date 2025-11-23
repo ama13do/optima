@@ -17,7 +17,7 @@ Interfaz de usuario moderna construida con React, Vite y Tailwind CSS para inter
 
 ## 🚀 Inicio Rápido
 
-### Prerequisitos
+### Prerrequisitos
 
 - Node.js 18+ 
 - npm o yarn
